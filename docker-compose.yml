@@ -22,6 +22,7 @@ services:
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
     volumes:
+      - ./pyflink_jobs/:/opt/pyflink_jobs/
       - ./job_artifacts/:/opt/flink/usrlib
 
   taskmanager:
@@ -33,6 +34,7 @@ services:
     container_name: eczachly-flink-taskmanager
     scale: 1
     volumes:
+      - ./pyflink_jobs/:/opt/pyflink_jobs/
       - ./job_artifacts/:/opt/flink/usrlib
     environment:
       - |

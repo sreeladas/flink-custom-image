@@ -26,15 +26,15 @@ RUN add-apt-repository -y ppa:deadsnakes/ppa && \
     python${PYTHON_VERSION} \
     libpython${PYTHON_VERSION}-dev && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* \
-    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python; \
+    rm -rf /var/lib/apt/lists/* &&\
+    ln -s /usr/bin/python${PYTHON_VERSION} /usr/bin/python && \
     ln -s /usr/bin/pip${PYTHON_VERSION} /usr/bin/pip
 
-RUN python${PYTHON_VERSION} --version && \
+RUN python --version && \
     wget https://bootstrap.pypa.io/get-pip.py && \
-    python${PYTHON_VERSION} ./get-pip.py ${PIP_VERSION}
+    python ./get-pip.py ${PIP_VERSION}
 
-RUN python${PYTHON_VERSION} -m pip install --upgrade pip; \
+RUN python -m pip install --upgrade pip; \
     pip install apache-flink==${FLINK_VERSION}; \
     pip install kafka-python;
 
