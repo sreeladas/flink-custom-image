@@ -43,6 +43,9 @@ build: ./Dockerfile
 demo: ./Dockerfile
 	docker compose -f docker-compose.yml -f docker-compose-kafka-generator.yml up --remove-orphans -d
 
+## Creates a kafka console consumer, i.e. prints the kafka messages to your console
+listen: ./Dockerfile
+	docker compose exec kafka kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic payment_msg
 ## Removes unused artifacts from this setup
 clean: ./Dockerfile
 	docker rm eczachly-flink-*
